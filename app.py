@@ -3,12 +3,10 @@ from flask import Flask, jsonify, render_template, request
 import pymysql
 from dotenv import load_dotenv
 
-# .env 파일 로드 (프로젝트 루트에 .env 파일이 있어야 합니다)
 load_dotenv()
 
 app = Flask(__name__)
 
-# 데이터베이스 연결을 위한 함수 (모든 민감 정보를 .env에서 읽어옵니다)
 def get_db_connection():
     return pymysql.connect(
         host=os.getenv("MYSQL_HOST"),

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <script defer src="/static/script.js"></script>
+    <style>
+      /* 언어 필터 입력창 스타일: 좌우 폭 줄이고, 위아래 패딩 넓게 */
+      #language-input-container input {
+          width: 200px; /* 좌우 폭 줄임 */
+          padding: 12px 5px; /* 위아래 패딩 12px, 좌우 5px */
+      }
+      /* 버튼도 적당히 패딩 조정 */
+      #language-input-container button {
+          padding: 12px 10px;
+      }
+    </style>
+</head>
+<body>
+    <div id="vcdh-search-container">
+        <input type="text" id="vcdh-search-input" placeholder="검색어를 입력하고 Enter를 눌러주세요." />
+    </div>
+
+    <div id="vcdh-filter-container">
+        <!-- 드롭다운 대신 텍스트 입력창 사용: 쉼표 단위로 언어를 구분 -->
+        <div id="language-input-container">
+            <input type="text" id="vcdh-language-input" placeholder="언어 입력 (예: 한국어, 영어)" />
+            <button onclick="applyFilter()">검색</button>
+        </div>
+
+        <select id="vcdh-type-filter" onchange="applyFilter()">
+            <option value="all">모든 유형</option>
+            <option value="이미지">이미지</option>
+            <option value="텍스트">텍스트</option>
+            <option value="오디오">오디오</option>
+            <option value="비디오">비디오</option>
+        </select>
+
+        <select id="vcdh-time-filter" onchange="applyFilter()">
+            <option value="all">전체</option>
+            <option value="3months">지난 3개월</option>
+            <option value="6months">지난 6개월</option>
+            <option value="1year">지난 1년</option>
+            <option value="2years">지난 2년</option>
+        </select>
+
+        <select id="vcdh-sort-filter" onchange="applyFilter()">
+            <option value="all">정렬</option>
+            <option value="latest">최신순</option>
+            <option value="popular">조회순</option>
+        </select>
+
+        <button id="vcdh-clear-filters" onclick="clearFilters()">필터 삭제</button>
+    </div>
+
+    <div id="vcdh-card-container" class="vcdh-card-container"></div>
+
+    <div id="vcdh-modal-overlay" class="vcdh-modal-overlay"></div>
+    <div id="vcdh-modal" class="vcdh-modal">
+        <div class="vcdh-modal-header">
+            <span id="vcdh-modal-title"></span>
+            <span id="vcdh-close-btn" class="vcdh-close-btn">&times;</span>
+        </div>
+        <div id="vcdh-modal-content" class="vcdh-modal-content"></div>
+    </div>
+
+    <div id="vcdh-loading" class="vcdh-loading">Loading...</div>
+
+    <div id="vcdh-pagination" class="vcdh-pagination"></div>
+
+    <div id="vcdh-jump-container">
+        <input type="text" id="page-number-input" placeholder="페이지 번호 입력" min="1">
+        <button id="jump-button">이동</button>
+    </div>
+</body>
+</html>
